@@ -1,10 +1,12 @@
+# encoding: utf-8
+
 import socket
 import subprocess
 import time
 from color import colored
 
 
-def build_header_program():
+def header_program():
     title = "|\t\t-~=[ BlackSkull ]=~-\t\t|"
     title = title.replace('\t', '        ')
     bar = '+' + (len(title) - 2) * "=" + '+'
@@ -85,7 +87,7 @@ class Client(object):
 
 
 def main():
-    build_header_program()
+    header_program()
     client = Client()
     client.build()
 
