@@ -91,10 +91,16 @@ class Server(object):
             print("Erro ao aceitar conexao: %s" % str(e))
         return
 
-    def send_command(self, conn):
+    def persistent_connect(self, conn):
         while True:
+            try:
+                self.send_command(conn)
+            except Exception:
+                print("erro ao tentar enviar comando para o client")
+
+    """Fica aguardando o comando e envia para o cliente 'conn'"""
+    def send_command(self, conn):
             cmd = input()
-            print(cmd)
             if cmd == 'quit':
                 self.socket_kill(conn)
                 sys.exit()
