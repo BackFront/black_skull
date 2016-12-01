@@ -55,7 +55,7 @@ class Client(object):
                 print(colored("\nTrying to connect again...\n", color='white', attrs=['dark', 'blink']))
                 time.sleep(5)
                 self.socket_connect()
-
+                raise
             try:
                 self.socket.send(str.encode(socket.gethostname()))
             except socket.error as e:
