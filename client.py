@@ -3,6 +3,7 @@
 import socket
 import subprocess
 import time
+import os
 from color import colored
 
 
@@ -33,11 +34,8 @@ class Client(object):
 
     """ Create a client instance """
     def build(self):
-        try:
-            self.socket_create()
-            self.persistent_connect()
-        except Exception:
-            print(colored("[!] Erro to build a client instance: ", color='red', attrs=['bold']))
+        self.socket_create()
+        self.socket_connect()
 
     """ Create a socket """
     def socket_create(self):
@@ -50,40 +48,50 @@ class Client(object):
 
     """ Connect to a remote socket server """
     def socket_connect(self):
-        try:
-            self.socket.connect((self.serverHost, self.serverPort))
-        except socket.error as e:
-            print(colored("[!] Socket connection error: " + str(e), color='red'))
-            time.sleep(5)
-            raise
-        try:
-            self.socket.send(str.encode(socket.gethostname()))
-        except socket.error as e:
-            print(colored("[!] Cannot send hostname to server: %s", color='red') % str(e))
-            raise
-        return
+            try:
+                self.socket.connect((self.serverHost, self.serverPort))
+            except socket.error as e:
+                print(colored("[!] Socket connection error: " + str(e), color='red', attrs=['bold']))
+                print(colored("\nTrying to connect again...\n", color='white', attrs=['dark', 'blink']))
+                time.sleep(5)
+                self.socket_connect()
+
+            try:
+                self.socket.send(str.encode(socket.gethostname()))
+            except socket.error as e:
+                print(colored("[!] Cannot send hostname to server: %s", color='red', attrs=['bold']) % str(e))
+                raise
+            self.persistent_connect()
+            return self.socket #Return socket if connection is success
 
     """ Persists trying to connect """
     def persistent_connect(self):
+        print(colored("[+] Connection stabilized on server: ", color='yellow'))
         while True:
             try:
-                self.socket_connect()
+                self.listen()
             except Exception as e:
-                print(colored("[!] Error on socket connections: %s", color='red') % str(e))
-                print(colored("\nTrying to connect again...\n", color='white', attrs=['dark', 'blink']))
+                print(colored("[!] Error. Could not keep alive: %s", color='red', attrs=['bold']) % str(e))
                 time.sleep(5)
             else:
                 break
 
     """ Keep conection alive """
     def listen(self):
+        conn = self.socket
         try:
-            while True:
-                data = self.socket.recv(1024)
-                print data
-        except Exception:
-            print(colored("\n\n[!] Listen error: \n\n", on_color='on_red'))
+            data = conn.recv(1024)
+            print data
+        except socket.error as e:
+            print(colored("[!] Listen error: %s", color='red', attrs=['bold']) % str(e))
+            self.socket_kill(conn)
+            return self.build()
 
+    def socket_kill(self, conn):
+        try:
+            self.socket.close()
+        except s.error as e:
+            print('Não foi possivel finalizar a conexao com o usuario: %s' % str(e))
 
 
 def main():

@@ -86,7 +86,7 @@ class Server(object):
             s = self.socket
             conn, host = s.accept()
             print(colored("[+] Client has been connected: < {host}:{port} >", color='yellow') . format(host=str(host[0]),port=str(host[1])))
-            self.send_command(conn)
+            self.persistent_connect(conn)
         except socket.error as e:
             print("Erro ao aceitar conexao: %s" % str(e))
         return
@@ -107,8 +107,7 @@ class Server(object):
             if len(str.encode(cmd)) > 0:
                 conn.send(str.encode(cmd))
                 self.listen(conn)
-
-        self.socket_kill(conn)
+            #self.socket_kill(conn)
 
 def main():
     header_program()
