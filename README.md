@@ -9,10 +9,14 @@
 ## Usage
 
 ### [Server]:
+
 ```sh
 $ python server.py
 ```
-** Configuring: **
+
+**Configuring:**
+
+________________________________
 
 ### [Client]:
 
@@ -22,7 +26,7 @@ _Use python file only for development testing_
 $ python server.py
 ```
 
-** Configuring: **
+**Configuring:**
 
 ## Releases
 
