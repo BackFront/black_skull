@@ -4,20 +4,24 @@
 
 ## Description
 
-Shell Reversa persistente com multithreading e multiplas conexões socket
+> Shell Reversa persistente com multithreading e multiplas conexões socket
 
 ## Usage
 
-**Server:**
-´´´sh
+**Run [Server]:**
+```sh
 $ python server.py
-´´´
+```
 
-**Client(to-dev):**
-´´´sh
+**Run [Client](only-dev):**
+_Run python file only tests_
+```sh
 $ python server.py
-´´´
+```
 
 ## Releases
 
 You can see changelog [here](https://github.com/BackFront/black_skull/blob/master/docs/releases.md).
+
+[Server]: <https://github.com/BackFront/black_skull/blob/master/server.py>
+[Client]: <https://github.com/BackFront/black_skull/blob/master/server.py>
