@@ -8,18 +8,21 @@
 
 ## Usage
 
-**Run [Server]:**
+### [Server]:
 ```sh
 $ python server.py
 ```
+** Configuring: **
 
-**Run [Client]:**
+### [Client]:
 
 _Use python file only for development testing_
 
 ```sh
 $ python server.py
 ```
+
+** Configuring: **
 
 ## Releases
 
