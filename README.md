@@ -14,6 +14,7 @@ $ python server.py
 ```
 
 **Run [Client]:**
+
 _Use python file only for development testing_
 
 ```sh
