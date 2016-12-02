@@ -13,7 +13,7 @@
 $ python server.py
 ```
 
-**Run [Client](only-dev):**
+**Run [Client] (only-dev):**
 
 _Run python file only tests_
 
