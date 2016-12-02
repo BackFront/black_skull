@@ -2,6 +2,8 @@
 
 ![BlackSkull](https://github.com/BackFront/black_skull/blob/master/blackskull.png)
 
+## Description
+
 Shell Reversa persistente com multithreading e multiplas conexões socket
 
 ## Usage
