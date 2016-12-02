@@ -13,9 +13,8 @@
 $ python server.py
 ```
 
-**Run [Client]:(only-dev):**
-
-_Run python file only tests_
+**Run [Client]:**
+_Use python file only for development testing_
 
 ```sh
 $ python server.py
