@@ -14,7 +14,9 @@ $ python server.py
 ```
 
 **Run [Client](only-dev):**
+
 _Run python file only tests_
+
 ```sh
 $ python server.py
 ```
