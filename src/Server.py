@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from color import colored
+from src.color import colored
 import socket
 import sys
 import threading
@@ -69,10 +69,10 @@ class Server(object):
 
     """Mantem a conexao viva após aceita-la"""
     def keep_alive(self, conn, host):
-        while 1:
+        while True:
             try:
                 conn.send(str.encode(' '))
-                conn.recv(1024).decode("utf-8")
+                self.listen_command(conn)
             except Exception as e:
                 print(colored("[-] Client has been disconnected: < {host}:{port} >", color='red') . format(host=str(host[0]), port=str(host[1])))
                 break

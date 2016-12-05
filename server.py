@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from color import colored
+from src.color import colored
 import socket
 import sys
 from src.Server import Server
